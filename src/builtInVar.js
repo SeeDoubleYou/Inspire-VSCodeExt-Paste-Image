@@ -34,7 +34,7 @@ function calcPathVariables(patternString, context = {}) {
     /\$\{(.*?)\}/g,
     (match, varName) => context[varName] ?? theVars[varName] ?? defaultVar
   );
-  return path.normalize(realPath);
+  return realPath;
 }
 
 module.exports = { calcPathVariables };
