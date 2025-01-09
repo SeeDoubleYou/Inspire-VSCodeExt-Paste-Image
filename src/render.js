@@ -6,9 +6,10 @@ const { calcPathVariables } = require("./builtInVar.js");
 // 在markdown中渲染的形式
 function render(basePath, filePath) {
   if (basePath) {
-    filePath = path.relative(basePath, filePath).replace(/\\/g, "/");
+    filePath = path.relative(basePath, filePath);
+  } else {
+    filePath = encodeURI(filePath);
   }
-  filePath = encodeURI(filePath);
   const imageLink = getImageLink(filePath);
   // vscode.env.clipboard.writeText(imageLink); // 似乎会打断saveImage的执行, 提早改变剪切板, 除非用await
   // vscode.commands.executeCommand("editor.action.clipboardPasteAction");
@@ -26,8 +27,8 @@ function render(basePath, filePath) {
   function getImageLink(imagePath) {
     let renderPattern = config.renderPattern;
     return calcPathVariables(renderPattern, {
-      imagePath: imagePath,
-    }).replace(/\\/g, "/");
+      imagePath: path.normalize(imagePath).replace(/\\/g, "/"),
+    });
   }
 }
 
