@@ -14,7 +14,7 @@ class ClipboardWSL {
       "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe";
     return fs.existsSync(command) ? command : "powershell.exe";
   }
-  // 由于执行速度的问题, 将脚本压缩为命令行形式
+  // Due to execution speed issues, the script is compressed into command line form
   async isImage() {
     const powershell = spawn(powershellCMD, [
       "-noprofile",
@@ -38,8 +38,10 @@ class ClipboardWSL {
   saveImage(filePath) {
     const { dir: fileDir, base: fileName } = path.parse(filePath);
     const workspaceDir = __dirname;
-    // powershell 不能识别wsl的路径, 所以先转到ps1脚本工作, 然后移动文件到目标文件夹下
-    return new Promise((resolve, reject) => {
+    // powershell 
+    // The wsl path cannot be recognized, so switch to ps1 script work first, 
+    // and then move the file to the target folder
+    return new Promise((resolve) => {
       spawn(
         powershellCMD,
         [
