@@ -34,7 +34,7 @@ async function paste() {
 async function pasteImage() {
   const filePath = await getFullPath(config.confirmPattern, config.pasteExt);
   render(config.baseDir, filePath); // 先渲染出来
-  const savePath = await clipboard.saveImage(filePath);
+  await clipboard.saveImage(filePath);
 }
 
 module.exports = {

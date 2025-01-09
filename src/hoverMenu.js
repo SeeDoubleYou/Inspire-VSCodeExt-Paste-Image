@@ -52,7 +52,7 @@ function registerServe(context) {
 
   async function editFile(filePath) {
     const fileName = path.basename(filePath);
-    const fileDir = path.dirname(filePath);
+    // const fileDir = path.dirname(filePath);
     // return spawn(
     //   config.editSoftware.command,
     //   // [...config.editSoftware.args, fileName],
@@ -115,7 +115,7 @@ function registerServe(context) {
         return;
       }
       if (await clipboard.isImage()) {
-        const savePath = await clipboard.saveImage(filePath);
+        await clipboard.saveImage(filePath);
         return;
       } else {
         await vscode.workspace.fs.writeFile(uri, Buffer.from(""));
