@@ -5,7 +5,7 @@ const render = require("./render.js");
 
 async function create() {
   const filePath = await getFullPath(config.confirmPattern, config.createExt);
-  render(config.baseDir, filePath); // 先渲染出来
+  render(config.baseDir, filePath); // render first
   // create empty
   await vscode.workspace.fs.writeFile(
     vscode.Uri.file(filePath),

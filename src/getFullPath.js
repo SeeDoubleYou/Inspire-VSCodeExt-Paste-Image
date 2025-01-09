@@ -11,7 +11,7 @@ function getDefaultName() {
     const editor = vscode.window.activeTextEditor;
     const selectText = editor.document.getText(editor.selection);
     const validName = /[\\:*?<>|]/;
-    // 如果有选中文字, 则需要判断是否合法
+    // if text is selected, determine if valid for filename
     if (selectText && validName.test(selectText)) {
       throw new PluginError("Invalid file name");
     }
